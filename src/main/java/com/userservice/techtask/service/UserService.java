@@ -1,5 +1,6 @@
 package com.userservice.techtask.service;
 
+import com.userservice.techtask.dto.UserUpdateDto;
 import com.userservice.techtask.entity.User;
 import com.userservice.techtask.exception.DateArgumentException;
 import com.userservice.techtask.exception.ResourceNotFoundException;
@@ -13,6 +14,9 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for performing operations related to users.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -20,6 +24,13 @@ public class UserService {
   private final Map<String, User> users = new HashMap<>();
   private final AgeValidator ageValidator;
 
+  /**
+   * Creates a new user.
+   *
+   * @param user The user to be created.
+   * @return The created user.
+   * @throws UnderAgeException If the user is under the minimum age requirement.
+   */
   public User createUser(User user) {
     if (ageValidator.ageIsAdult(user.getBirthDate())) {
       users.put(user.getEmail(), user);
@@ -29,6 +40,13 @@ public class UserService {
     }
   }
 
+  /**
+   * Retrieves a user by email.
+   *
+   * @param email The email of the user to retrieve.
+   * @return The user with the specified email.
+   * @throws ResourceNotFoundException If the user with the specified email does not exist.
+   */
   public User getUserByEmail(String email) {
     if (users.containsKey(email)) {
       return users.get(email);
@@ -37,6 +55,12 @@ public class UserService {
     }
   }
 
+  /**
+   * Retrieves all users.
+   *
+   * @return A list of all users.
+   * @throws ResourceNotFoundException If there are no users.
+   */
   public List<User> getAllUsers() {
     if (users.isEmpty()) {
       throw new ResourceNotFoundException("Any user");
@@ -45,15 +69,33 @@ public class UserService {
     }
   }
 
+  /**
+   * Updates a user's information.
+   *
+   * @param email       The email of the user to update.
+   * @param updatedUser The updated user data.
+   * @return The updated user.
+   * @throws ResourceNotFoundException If the user with the specified email does not exist.
+   */
   public User updateUser(String email, User updatedUser) {
     if (users.containsKey(email)) {
-      return users.put(email, updatedUser);
+      users.remove(email);
+      users.put(updatedUser.getEmail(), updatedUser);
+      return updatedUser;
     } else {
       throw new ResourceNotFoundException(email);
     }
   }
 
-  public User updateUserByField(String email, User updatedUser) {
+  /**
+   * Updates specific fields of a user by email.
+   *
+   * @param email       The email of the user to update.
+   * @param updatedUser The updated user data.
+   * @return The updated user.
+   * @throws ResourceNotFoundException If the user with the specified email does not exist.
+   */
+  public User updateUserByField(String email, UserUpdateDto updatedUser) {
     if (!users.containsKey(email)) {
       throw new ResourceNotFoundException(email);
     }
@@ -81,12 +123,26 @@ public class UserService {
     return existingUser;
   }
 
+  /**
+   * Deletes a user by email.
+   *
+   * @param email The email of the user to delete.
+   * @throws ResourceNotFoundException If the user with the specified email does not exist.
+   */
   public void deleteUser(String email) {
     if (users.remove(email) == null) {
       throw new ResourceNotFoundException(email);
     }
   }
 
+  /**
+   * Retrieves users within a specified birth date range.
+   *
+   * @param fromDate The start date of the birth date range.
+   * @param toDate   The end date of the birth date range.
+   * @return A list of users within the specified birth date range.
+   * @throws DateArgumentException If the 'from' date is after the 'to' date.
+   */
   public List<User> getUsersByBirthDateRange(LocalDate fromDate, LocalDate toDate) {
     if (fromDate.isAfter(toDate)) {
       throw new DateArgumentException("'From' date should be before 'To' date");

@@ -14,6 +14,10 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @ControllerAdvice()
 public class HandlerException {
 
+  /**
+   * Handles ResourceNotFoundException and returns a ResponseEntity with a BAD_REQUEST status,
+   * including an ApiError object containing the error details.
+   */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(ResourceNotFoundException.class)
   public ResponseEntity<Object> handleNoFoundExceptions(ResourceNotFoundException ex) {
@@ -27,6 +31,10 @@ public class HandlerException {
 
   }
 
+  /**
+   * Handles NoHandlerFoundException and returns a ResponseEntity with a NOT_FOUND status, including
+   * an ApiError object containing the error details.
+   */
   @ResponseStatus(HttpStatus.NOT_FOUND)
   @ExceptionHandler(NoResourceFoundException.class)
   public ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex) {
@@ -40,18 +48,25 @@ public class HandlerException {
 
   }
 
+  /**
+   * Handles MethodArgumentNotValidException and returns a ResponseEntity with a BAD_REQUEST status,
+   * including an ApiError object containing the error details extracted from the field error.
+   */
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
     ApiError apiError = new ApiError(
         LocalDateTime.now(),
         HttpStatus.BAD_REQUEST.value(),
         Objects.requireNonNull(ex.getFieldError()).getDefaultMessage(),
-        "Please check your email."
+        "Please check your data."
     );
     return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
   }
 
-
+  /**
+   * Handles UnderAgeException and returns a ResponseEntity with a BAD_REQUEST status, including an
+   * ApiError object containing the error message and details.
+   */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(UnderAgeException.class)
   public ResponseEntity<Object> handleUnderAgeExceptions(UnderAgeException ex) {
@@ -64,6 +79,10 @@ public class HandlerException {
     return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
   }
 
+  /**
+   * Handles DateArgumentException and returns a ResponseEntity with a BAD_REQUEST status, including
+   * an ApiError object containing the error message and details.
+   */
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(DateArgumentException.class)
   public ResponseEntity<Object> handleDateArgumentExceptions(DateArgumentException ex) {

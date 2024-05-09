@@ -3,6 +3,9 @@ package com.userservice.techtask.exception;
 import java.time.LocalDateTime;
 import lombok.Data;
 
+/**
+ * Represents an API error response.
+ */
 @Data
 public class ApiError {
 
@@ -11,6 +14,14 @@ public class ApiError {
   private String message;
   private String details;
 
+  /**
+   * Constructs an API error.
+   *
+   * @param time    The time when the error occurred.
+   * @param status  The HTTP status code.
+   * @param message The error message.
+   * @param details Additional details about the error.
+   */
   public ApiError(LocalDateTime time, int status, String message, String details) {
     super();
     this.time = time;

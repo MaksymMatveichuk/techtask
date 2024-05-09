@@ -1,31 +1,29 @@
-package com.userservice.techtask.entity;
+package com.userservice.techtask.dto;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * Represents a user entity.
+ * Data transfer object (DTO) for updating user information.
  */
-@Data
-public class User {
+@Getter
+@Setter
+@EqualsAndHashCode
+public class UserUpdateDto {
 
   @Email(message = "Invalid email address")
   @Size(max = 100)
-  @NotBlank(message = "Mail name is required")
   private String email;
 
-  @NotBlank(message = "First name is required")
   private String firstName;
 
-  @NotBlank(message = "Last name is required")
   private String lastName;
 
-  @NotNull(message = "Birth date is required")
   @Past(message = "Birth date must be in the past")
   private LocalDate birthDate;
 
