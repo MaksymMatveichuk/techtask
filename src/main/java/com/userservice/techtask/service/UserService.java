@@ -63,7 +63,7 @@ public class UserService {
    */
   public List<User> getAllUsers() {
     if (users.isEmpty()) {
-      throw new ResourceNotFoundException("Any user not found!");
+      throw new ResourceNotFoundException("Any user not found!!");
     } else {
       return new ArrayList<>(users.values());
     }
