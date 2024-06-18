@@ -11,7 +11,7 @@ name: tester
 on: workflow_dispatch
 
 jobs:
-  test:
+  tester:
 
     runs-on: ubuntu-latest
 
