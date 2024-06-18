@@ -3,7 +3,7 @@ name: Java CI with Maven
 on:
   push:
     branches:
-      - main  # замените на имя вашей основной ветки, если она отличается
+      - master
   workflow_dispatch:
 
 jobs:
