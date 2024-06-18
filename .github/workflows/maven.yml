@@ -1,8 +1,8 @@
-name: Java CI with Maven
+name: Java
 
 on:
   workflow_run:
-    workflows: ["tester"]
+    workflows: ["Workflow"]
     types:
       - completed
 
