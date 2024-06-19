@@ -17,12 +17,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn test
-    - name: Create status for commit
-      if: always() # Убедимся, что статус создается независимо от результата предыдущих шагов
-      uses: actions/github-checks@v1
-      with:
-        state: ${{ job.status }} # Устанавливаем статус на основе результата работы job
-        context: 'work'
-        description: 'The build finished with this status'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        sha: ${{ github.sha }}
+    - name: Create success status check
+      run: |
+        curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -d '{"state": "success", "context": "name-of-your-check"}' \
+        https://api.github.com/repos/:owner/:repo/statuses/$(git rev-parse HEAD)
