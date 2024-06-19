@@ -20,5 +20,5 @@ jobs:
     - name: Create success status check
       run: |
         curl -X POST -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
-        -d '{"state": "success", "context": "ruleset"}' \
+        -d '{"state": "success", "context": "work"}' \
         https://api.github.com/repos/NewEnergyCode/techtask/statuses/$(git rev-parse HEAD)
