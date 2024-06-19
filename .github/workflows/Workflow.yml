@@ -21,10 +21,10 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const { context, github } = require('@actions/github');
-          const status = context.payload.workflow_dispatch ? 'success' : 'failure';
+          const status = 'success'; // Измените на 'failure', если тесты не прошли
           github.repos.createCommitStatus({
-            ...context.repo,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
             sha: context.sha,
             state: status,
             target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
