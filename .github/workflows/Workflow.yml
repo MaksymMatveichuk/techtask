@@ -17,17 +17,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn test
-    - name: Send status check
-      uses: actions/github-script@v6
+    - name: Create status for commit
+      if: always() # Убедимся, что статус создается независимо от результата предыдущих шагов
+      uses: sibiraj-s/action-create-status@v1
       with:
-        script: |
-          const status = 'success'; // Измените на 'failure', если тесты не прошли
-          await github.repos.createCommitStatus({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            sha: context.sha,
-            state: status,
-            target_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-            description: 'The build finished successfully.',
-            context: 'work'
-          });
+        state: ${{ job.status }} # Устанавливаем статус на основе результата работы job
+        context: 'work'
+        description: 'The build finished with this status'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        sha: ${{ github.sha }}
