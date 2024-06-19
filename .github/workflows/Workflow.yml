@@ -20,5 +20,5 @@ jobs:
     - name: Create success status check
       run: |
         curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-        -d '{"state": "success", "context": "name-of-your-check"}' \
-        https://api.github.com/repos/:owner/:repo/statuses/$(git rev-parse HEAD)
+        -d '{"state": "success", "context": "ruleset"}' \
+        https://api.github.com/repos/NewEnergyCode/techtask/statuses/$(git rev-parse HEAD)
