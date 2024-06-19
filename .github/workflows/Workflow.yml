@@ -19,7 +19,7 @@ jobs:
       run: mvn test
     - name: Create status for commit
       if: always() # Убедимся, что статус создается независимо от результата предыдущих шагов
-      uses: sibiraj-s/action-create-status@v6
+      uses: actions/github-checks@v1
       with:
         state: ${{ job.status }} # Устанавливаем статус на основе результата работы job
         context: 'work'
