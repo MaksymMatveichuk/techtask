@@ -22,7 +22,11 @@ jobs:
       with:
         script: |
           const status = 'success'; // Измените на 'failure', если тесты не прошли
-          github.repos.createCommitStatus({
+          const { GITHUB_TOKEN } = process.env;
+          const { Octokit } = require("@octokit/rest");
+          const octokit = new Octokit({ auth: GITHUB_TOKEN });
+
+          octokit.repos.createCommitStatus({
             owner: context.repo.owner,
             repo: context.repo.repo,
             sha: context.sha,
