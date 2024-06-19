@@ -18,8 +18,8 @@ jobs:
     - name: Build with Maven
       run: mvn test
     - name: Send status check
-      uses: louisguitton/github-actions-send-status-check@v1
+      uses: actions/github-checks@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_TOKEN }}
         state: 'success' # или 'failure' если тесты не прошли
         context: 'work' # имя проверки статуса
