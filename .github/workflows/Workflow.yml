@@ -1,10 +1,10 @@
 name: Workflow
+
 on:
   workflow_dispatch:
 
 jobs:
   work:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,9 +17,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn test
-    - name: Send status check
-      uses: louisguitton/github-actions-send-status-check@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        state: 'success' # или 'failure' если тесты не прошли
-        context: 'work' # имя проверки статуса
+    - name: Create success status check
+      run: |
+        curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -d '{"state": "success", "context": "name-of-your-check"}' \
+        https://api.github.com/repos/:owner/:repo/statuses/$(git rev-parse HEAD)
