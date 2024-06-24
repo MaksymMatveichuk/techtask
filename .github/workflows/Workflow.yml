@@ -15,8 +15,10 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: run fast tests
       run: mvn test
+    - name: run slow tests
+      run: mvn test -Pslow-tests
     - name: Create success status check
       run: |
         curl -X POST -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
