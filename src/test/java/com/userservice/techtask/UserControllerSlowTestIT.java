@@ -32,7 +32,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+public class UserControllerSlowTestIT {
 
   @Autowired
   private MockMvc mockMvc;
