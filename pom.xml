@@ -86,7 +86,7 @@
         <configuration>
           <includes>
             <include>**/*Service*</include>
-<!--            <include>**/websocket*</include>-->
+            <include>**/websocket*</include>
           </includes>
         </configuration>
       </plugin>
