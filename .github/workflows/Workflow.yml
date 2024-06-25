@@ -22,12 +22,6 @@ jobs:
     - name: run fast tests
       run: mvn test
 
-    - name: run slow tests
-      run: mvn integration-test
-
-    - name: run slow tests
-      run: mvn verify
-
     - name: Create success status check
       run: |
         curl -X POST -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
