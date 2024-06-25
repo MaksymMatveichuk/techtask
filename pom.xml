@@ -86,7 +86,7 @@
         <configuration>
           <includes>
             <include>**/*Service*</include>
-            <include>**/websocket*</include>
+            <include>src/test/java/com/userservice/techtask/websocket**</include>
           </includes>
         </configuration>
       </plugin>
