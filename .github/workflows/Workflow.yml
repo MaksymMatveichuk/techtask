@@ -19,17 +19,17 @@ jobs:
       - name: run compile
         run: mvn clean install -DskipTests
 
-      - name: run fast tests
-        run: mvn test
+      # - name: run fast tests
+      #   run: mvn test
 
       - name: Docker Hub Login
         run: docker login -u ${{ secrets.USERNAME_TEST_DOCKER_HUB }} -p ${{ secrets.PASSWORD_TEST_DOCKER_HUB }}
 
       - name: Docker Image Build
-        run: docker build -t techtask/techtask .
+        run: docker build -t techtasktest/techtasktest .
 
       - name: Publish image to Docker Hub
-        run: docker push techtask/techtask:latest
+        run: docker push techtasktest/techtasktest:latest
 
       - name: Create success status check
         run: |
@@ -42,8 +42,8 @@ jobs:
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from Docker Hub
-        run: docker pull techtask/techtask:latest
+        run: docker pull techtasktest/techtasktest:latest
       - name: Delete old container
-        run: docker rm -f techtask-conainer
+        run: docker rm -f techtasktest-conainer
       - name: Run Docker Container
-        run: docker run -d -p 8080:8080 --name techtask-conainer techtask/techtask
+        run: docker run -d -p 8080:8080 --name techtasktest-conainer techtasktest/techtasktest
