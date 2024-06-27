@@ -1,4 +1,4 @@
-package com.userservice.techtask;
+package com.userservice.techtask.websocket;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

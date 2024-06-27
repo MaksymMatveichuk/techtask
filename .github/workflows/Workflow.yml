@@ -4,32 +4,46 @@ on:
   workflow_dispatch:
 
 jobs:
-  work:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 21
-      uses: actions/setup-java@v3
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: run compile
-      run: mvn compile
+      - name: run compile
+        run: mvn compile
 
-    - name: run fast tests
-      run: mvn test
+      - name: run fast tests
+        run: mvn test
 
-    - name: run slow tests
-      run: mvn integration-test
+      - name: Docker Hub Login
+        run: docker login -u ${{ secrets.USERNAME_TEST_DOCKER_HUB }} -p ${{ secrets.PASSWORD_TEST_DOCKER_HUB }}
 
-    - name: run slow tests
-      run: mvn verify
+      - name: Docker Image Build
+        run: docker build -t techtasktest/techtask .
 
-    - name: Create success status check
-      run: |
-        curl -X POST -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
-        -d '{"state": "success", "context": "work"}' \
-        https://api.github.com/repos/NewEnergyCode/techtask/statuses/$(git rev-parse HEAD)
+      - name: Publish image to Docker Hub
+        run: docker push techtasktest/techtask:latest
+
+      - name: Create success status check
+        run: |
+          curl -X POST -H "Authorization: token ${{ secrets.GH_TOKEN }}" \
+          -d '{"state": "success", "context": "work"}' \
+          https://api.github.com/repos/NewEnergyCode/techtask/statuses/$(git rev-parse HEAD)
+
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull Image from Docker Hub
+        run: docker pull techtasktest/techtask:latest
+      - name: Delete old container
+        run: docker rm -f techtask-conainer
+      - name: Run Docker Container
+        run: docker run -d -p 8080:8080 --name techtask-conainer techtasktest/techtask

@@ -26,7 +26,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceFastTest {
+public class PlainUnitServiceTest {
 
   @Mock
   private AgeValidator ageValidator;
