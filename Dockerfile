@@ -1,5 +1,5 @@
 FROM openjdk:21
 EXPOSE 8080
-ENV JAR_FILE=target/techtask-*.jar
-COPY ${JAR_FILE} /techtask.jar
+WORKDIR /app
+COPY target/techtask.jar techtask.jar
 ENTRYPOINT ["java", "-jar", "/techtask.jar"]
