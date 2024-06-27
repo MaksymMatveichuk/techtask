@@ -26,10 +26,10 @@ jobs:
         run: docker login -u ${{ secrets.USERNAME_TEST_DOCKER_HUB }} -p ${{ secrets.PASSWORD_TEST_DOCKER_HUB }}
 
       - name: Docker Image Build
-        run: docker build -t techtasktest/techtasktest .
+        run: docker build -t matveychukm/techtasktest .
 
       - name: Publish image to Docker Hub
-        run: docker push techtasktest/techtasktest:latest
+        run: docker push matveychukm/techtasktest:latest
 
       - name: Create success status check
         run: |
@@ -42,8 +42,8 @@ jobs:
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from Docker Hub
-        run: docker pull techtasktest/techtasktest:latest
+        run: docker pull matveychukm/techtasktest:latest
       - name: Delete old container
         run: docker rm -f techtasktest-conainer
       - name: Run Docker Container
-        run: docker run -d -p 8080:8080 --name techtasktest-conainer techtasktest/techtasktest
+        run: docker run -d -p 8080:8080 --name techtasktest-conainer matveychukm/techtasktest
