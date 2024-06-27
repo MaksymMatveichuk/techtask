@@ -42,7 +42,7 @@ jobs:
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from Docker Hub
-        run: docker pull matveychukm/techtasktest:latest
+        run: docker rmi matveychukm/techtasktest:latest
       - name: Delete old container
         run: docker rm -f techtasktest-conainer
       - name: Run Docker Container
