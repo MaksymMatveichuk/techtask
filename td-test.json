@@ -1,11 +1,12 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/new-task-test4:1",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/new-task-test4:2",
     "containerDefinitions": [
         {
             "name": "container",
             "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/teschtask",
-            "cpu": 0,
-            "memory": 4096,
+            "cpu": 1024,
+            "memory": 15360,
+            "memoryReservation": 8192,
             "portMappings": [
                 {
                     "name": "container-8080-tcp",
@@ -38,7 +39,7 @@
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 2,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -53,6 +54,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -72,19 +76,18 @@
     ],
     "placementConstraints": [],
     "compatibilities": [
-        "EC2",
-        "FARGATE"
+        "EC2"
     ],
     "requiresCompatibilities": [
         "EC2"
     ],
     "cpu": "1024",
-    "memory": "4096",
+    "memory": "16384",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-06-29T10:53:14.349Z",
+    "registeredAt": "2024-06-29T11:07:58.246Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
