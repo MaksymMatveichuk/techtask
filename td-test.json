@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:6",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:8",
     "containerDefinitions": [
         {
             "name": "container",
-            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:bbd98729b73ff9cd03598522bee5380138096f13",
+            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:fc10c792d421bcc7b15ba9759d6e8ed146d083e1",
             "cpu": 0,
             "memory": 512,
             "portMappings": [
@@ -45,7 +45,7 @@
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 6,
+    "revision": 8,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -85,18 +85,19 @@
     ],
     "placementConstraints": [],
     "compatibilities": [
-        "EC2"
+        "EC2",
+        "FARGATE"
     ],
     "requiresCompatibilities": [
         "EC2"
     ],
     "cpu": "1024",
-    "memory": "512",
+    "memory": "3072",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-01T15:47:01.902Z",
+    "registeredAt": "2024-07-01T15:49:33.432Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
