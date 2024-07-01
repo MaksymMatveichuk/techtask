@@ -27,6 +27,13 @@ public class UserController {
 
   private final UserService userService;
 
+  @GetMapping("/health")
+  public String healthCheck() {
+    // Check application dependencies here
+    // If everything is OK, return "OK"
+    return "OK";
+  }
+
   /**
    * Endpoint for creating a new user.
    *

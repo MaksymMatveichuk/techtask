@@ -15,6 +15,16 @@
                 }
             ],
             "essential": true,
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "curl -f http://16.171.114.217:8080/health || exit 1"
+                ],
+                "interval": 30,
+                "timeout": 5,
+                "retries": 3,
+                "startPeriod": 30
+            },
             "environment": [],
             "mountPoints": [],
             "volumesFrom": [],
