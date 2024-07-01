@@ -1,10 +1,11 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:1",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:3",
     "containerDefinitions": [
         {
             "name": "container",
             "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:latest",
             "cpu": 0,
+            "memory": 2048,
             "portMappings": [
                 {
                     "name": "container-8080-tcp",
@@ -16,10 +17,8 @@
             ],
             "essential": true,
             "environment": [],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -30,6 +29,15 @@
                 },
                 "secretOptions": []
             },
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "curl -sf http://localhost/ || exit 1"
+                ],
+                "interval": 30,
+                "timeout": 5,
+                "retries": 3
+            },
             "systemControls": []
         }
     ],
@@ -37,12 +45,15 @@
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 3,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
         {
             "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
         },
         {
             "name": "ecs.capability.execution-role-awslogs"
@@ -55,6 +66,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.container-health-check"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -83,7 +97,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-01T15:00:13.524Z",
+    "registeredAt": "2024-07-01T15:39:39.699Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
