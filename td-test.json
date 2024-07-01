@@ -1,13 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdef:1",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:1",
     "containerDefinitions": [
         {
-            "name": "cont",
+            "name": "container",
             "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:latest",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "cont-8080-tcp",
+                    "name": "container-8080-tcp",
                     "containerPort": 8080,
                     "hostPort": 8080,
                     "protocol": "tcp",
@@ -23,7 +23,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/newtaskdef",
+                    "awslogs-group": "/ecs/newtaskdefinition",
                     "awslogs-create-group": "true",
                     "awslogs-region": "eu-north-1",
                     "awslogs-stream-prefix": "ecs"
@@ -33,7 +33,7 @@
             "systemControls": []
         }
     ],
-    "family": "newtaskdef",
+    "family": "newtaskdefinition",
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -83,7 +83,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-01T14:49:00.260Z",
+    "registeredAt": "2024-07-01T15:00:13.524Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
