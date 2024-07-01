@@ -1,11 +1,11 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:11",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:17",
     "containerDefinitions": [
         {
             "name": "container",
-            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:c557770f1fa07019bab0599d45a8b9f568a8e4df",
-            "cpu": 1024,
-            "memory": 3072,
+            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:2e60968331374a9a82ac2e7f37fa453085e86c27",
+            "cpu": 512,
+            "memory": 717,
             "portMappings": [
                 {
                     "name": "container-8080-tcp",
@@ -31,8 +31,7 @@
             },
             "healthCheck": {
                 "command": [
-                    "CMD-SHELL",
-                    "curl -sf http://localhost/ || exit 1"
+                    "CMD curl -f http://localhost:8080/health || exit 1"
                 ],
                 "interval": 5,
                 "timeout": 5,
@@ -45,7 +44,7 @@
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 11,
+    "revision": 17,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -97,7 +96,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-01T16:00:35.504Z",
+    "registeredAt": "2024-07-01T16:20:21.238Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
