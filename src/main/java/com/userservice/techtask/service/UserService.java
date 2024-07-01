@@ -145,7 +145,7 @@ public class UserService {
    */
   public List<User> getUsersByBirthDateRange(LocalDate fromDate, LocalDate toDate) {
     if (fromDate.isAfter(toDate)) {
-      throw new DateArgumentException("'From' date should be before 'To' date.");
+      throw new DateArgumentException("'From' date should be before 'To' date!");
     }
     return users.values().stream()
         .filter(user -> !user.getBirthDate().isBefore(fromDate)
