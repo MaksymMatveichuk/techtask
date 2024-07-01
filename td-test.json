@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/testtask:3",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/testtask:8",
     "containerDefinitions": [
         {
             "name": "container",
-            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:c27dda1b56fe29b239d8c4ea0a93e4fd2e32b867",
+            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:64625804e912184d00a8958dad9a7729480d2dad",
             "cpu": 0,
             "portMappings": [
                 {
@@ -28,6 +28,15 @@
                 },
                 "secretOptions": []
             },
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "curl -f http://localhost/ || exit 1"
+                ],
+                "interval": 30,
+                "timeout": 5,
+                "retries": 3
+            },
             "systemControls": []
         }
     ],
@@ -35,12 +44,15 @@
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 3,
+    "revision": 8,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
         {
             "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
         },
         {
             "name": "ecs.capability.execution-role-awslogs"
@@ -53,6 +65,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.container-health-check"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -81,7 +96,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-01T10:51:45.170Z",
+    "registeredAt": "2024-07-01T11:23:26.876Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
