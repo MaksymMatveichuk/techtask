@@ -1,13 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/td-test:5",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/td-fargate:1",
     "containerDefinitions": [
         {
-            "name": "container",
-            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:latest",
+            "name": "cont",
+            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "continer-8080-tcp",
+                    "name": "cont-8080-tcp",
                     "containerPort": 8080,
                     "hostPort": 8080,
                     "protocol": "tcp",
@@ -23,7 +23,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/td-test",
+                    "awslogs-group": "/ecs/td-fargate",
                     "awslogs-create-group": "true",
                     "awslogs-region": "eu-north-1",
                     "awslogs-stream-prefix": "ecs"
@@ -33,11 +33,11 @@
             "systemControls": []
         }
     ],
-    "family": "td-test",
+    "family": "td-fargate",
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 5,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -75,7 +75,7 @@
         "FARGATE"
     ],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
     "cpu": "1024",
     "memory": "3072",
@@ -83,7 +83,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-02T09:11:35.795Z",
+    "registeredAt": "2024-07-02T11:29:47.990Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
