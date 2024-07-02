@@ -1,11 +1,10 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/newtaskdefinition:17",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/test-techtask-td:1",
     "containerDefinitions": [
         {
             "name": "container",
-            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:2e60968331374a9a82ac2e7f37fa453085e86c27",
-            "cpu": 512,
-            "memory": 717,
+            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:latest",
+            "cpu": 0,
             "portMappings": [
                 {
                     "name": "container-8080-tcp",
@@ -17,42 +16,33 @@
             ],
             "essential": true,
             "environment": [],
+            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
+            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/newtaskdefinition",
+                    "awslogs-group": "/ecs/test-techtask-td",
                     "awslogs-create-group": "true",
                     "awslogs-region": "eu-north-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
             },
-            "healthCheck": {
-                "command": [
-                    "CMD curl -f http://localhost:8080 || exit 1"
-                ],
-                "interval": 5,
-                "timeout": 5,
-                "retries": 3
-            },
             "systemControls": []
         }
     ],
-    "family": "newtaskdefinition",
+    "family": "test-techtask-td",
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 17,
+    "revision": 1,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
         {
             "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-        },
-        {
-            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.24"
         },
         {
             "name": "ecs.capability.execution-role-awslogs"
@@ -65,9 +55,6 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
-        },
-        {
-            "name": "ecs.capability.container-health-check"
         },
         {
             "name": "ecs.capability.execution-role-ecr-pull"
@@ -91,12 +78,12 @@
         "EC2"
     ],
     "cpu": "1024",
-    "memory": "5120",
+    "memory": "3072",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-01T16:20:21.238Z",
+    "registeredAt": "2024-07-02T07:58:08.855Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
