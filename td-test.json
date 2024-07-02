@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/test-td:1",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/td-test:1",
     "containerDefinitions": [
         {
             "name": "container",
@@ -23,7 +23,7 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/test-td",
+                    "awslogs-group": "/ecs/td-test",
                     "awslogs-create-group": "true",
                     "awslogs-region": "eu-north-1",
                     "awslogs-stream-prefix": "ecs"
@@ -33,7 +33,7 @@
             "systemControls": []
         }
     ],
-    "family": "test-td",
+    "family": "td-test",
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -83,7 +83,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-02T07:50:50.664Z",
+    "registeredAt": "2024-07-02T08:44:54.773Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
