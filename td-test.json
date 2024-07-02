@@ -2,7 +2,7 @@
     "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/td-test:5",
     "containerDefinitions": [
         {
-            "name": "continer",
+            "name": "container",
             "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:latest",
             "cpu": 0,
             "portMappings": [
