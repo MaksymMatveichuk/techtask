@@ -1,5 +1,11 @@
+# Используйте официальное изображение OpenJDK в качестве базового изображения
 FROM openjdk:21
-ENV JAR_FILE=target/techtask-*.jar
-COPY ${JAR_FILE} /techtask.jar
-ENTRYPOINT ["java", "-jar", "/techtask.jar"]
 
+# Установите рабочую директорию внутри контейнера
+WORKDIR /app
+
+# Копируйте jar файл в контейнер
+COPY target/techtask-*.jar /app/techtask.jar
+
+# Установите команду запуска контейнера
+ENTRYPOINT ["java", "-jar", "/app/techtask.jar"]
