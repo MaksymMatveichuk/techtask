@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/new-td:13",
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:854387337926:task-definition/new-td:15",
     "containerDefinitions": [
         {
             "name": "container",
-            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:a35ccbb5a6ab54d065d7ed5a701edd539408242b",
+            "image": "854387337926.dkr.ecr.eu-north-1.amazonaws.com/techtask:0c9e0e83ee7ae8a2b6c3dba669b5a55c4783eb96",
             "cpu": 0,
             "memory": 819,
             "memoryReservation": 819,
@@ -11,7 +11,7 @@
                 {
                     "name": "container-80-tcp",
                     "containerPort": 8080,
-                    "hostPort": 80,
+                    "hostPort": 8080,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -37,7 +37,7 @@
     "taskRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::854387337926:role/ecsTaskExecutionRole",
     "networkMode": "bridge",
-    "revision": 13,
+    "revision": 15,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -78,7 +78,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-07-04T09:34:41.352Z",
+    "registeredAt": "2024-07-04T09:50:22.244Z",
     "registeredBy": "arn:aws:iam::854387337926:root",
     "tags": []
 }
