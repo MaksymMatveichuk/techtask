@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      working-directory: deploy_techtask_only
+      working-directory: terraform/deploy_techtask_only
     defaults:
       run:
         shell: bash
@@ -37,9 +37,9 @@ jobs:
 
     - name: List all files
       run: |
-        echo "Repository root directory: /home/runner/work/techtask/deploy_techtask_only"
+        echo "Repository root directory: /home/runner/work/techtask/techtask"
         echo "All files and directories in repository root:"
-        ls -R /home/runner/work/techtask/deploy_techtask_only   
+        ls -R /home/runner/work/techtask/techtask  
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
