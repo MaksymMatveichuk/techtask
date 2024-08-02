@@ -37,9 +37,9 @@ jobs:
 
     - name: List all files
       run: |
-        echo "Repository root directory: /home/runner/work/Terraform/Terraform"
+        echo "Repository root directory: /home/runner/work/techtask/deploy_techtask_only"
         echo "All files and directories in repository root:"
-        ls -R /home/runner/work/Terraform/Terraform   
+        ls -R /home/runner/work/techtask/deploy_techtask_only   
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3

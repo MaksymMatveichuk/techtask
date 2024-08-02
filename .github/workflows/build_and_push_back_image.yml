@@ -52,9 +52,9 @@ jobs:
           ls -R
       - name: List all files
         run: |
-          echo "Repository root directory: /home/runner/work/techtask/techtask"
+          echo "Repository root directory: /home/runner/work/techtask/create_infrastructure_only"
           echo "All files and directories in repository root:"
-          ls -R /home/runner/work/techtask/techtask   
+          ls -R /home/runner/work/techtask/create_infrastructure_only   
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
