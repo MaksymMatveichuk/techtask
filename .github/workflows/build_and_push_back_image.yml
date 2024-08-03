@@ -32,8 +32,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Test with Maven
-        run: mvn clean install
+      - name: run tests
+        run: mvn test
+
+      - name: run build
+        run: mvn package -DskipTests
 
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
