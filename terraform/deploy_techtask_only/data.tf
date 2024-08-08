@@ -12,8 +12,8 @@ data "aws_key_pair" "keypair" {
   key_name = "terraform_ec2_key_pair"
 }
 
-data "aws_iam_instance_profile" "aws_iam_instance_profile_tt" {
-  name = "new-ecs-instance-profile-tt"
+data "aws_iam_instance_profile" "aws_iam_instance_profile_t" {
+  name = "new-ecs-instance-profile-t"
 }
 
 

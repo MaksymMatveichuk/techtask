@@ -10,7 +10,7 @@ resource "aws_launch_template" "ecs_back_launch" {
     EOF
   )
   iam_instance_profile {
-    arn = data.aws_iam_instance_profile.aws_iam_instance_profile_tt.arn
+    arn = data.aws_iam_instance_profile.aws_iam_instance_profile_t.arn
   }
 
   metadata_options {
