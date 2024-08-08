@@ -66,14 +66,14 @@ resource "aws_iam_role_policy_attachment" "ecs_policy_attachments_inst_role" {
   policy_arn = local.policies_for_inst[count.index]
 }
 
-resource "aws_iam_instance_profile" "instance_profile_tt" {
-  name = "new-ecs-instance-profile-tt"
+resource "aws_iam_instance_profile" "instance_profile_t" {
+  name = "new-ecs-instance-profile-t"
   role = aws_iam_role.ecs_inst_role.name
 }
-data "aws_iam_instance_profile" "aws_iam_instance_profile_tt" {
-  depends_on = [aws_iam_instance_profile.instance_profile_tt]
-  name       = "new-ecs-instance-profile-tt"
+data "aws_iam_instance_profile" "aws_iam_instance_profile_t" {
+  depends_on = [aws_iam_instance_profile.instance_profile_t]
+  name       = "new-ecs-instance-profile-t"
 }
 output "instance_profile" {
-  value = data.aws_iam_instance_profile.aws_iam_instance_profile_tt.arn
+  value = data.aws_iam_instance_profile.aws_iam_instance_profile_t.arn
 }
