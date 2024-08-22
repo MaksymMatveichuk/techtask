@@ -2,16 +2,11 @@ package com.userservice.techtask.controller;
 
 import com.userservice.techtask.dto.UserUpdateDto;
 import com.userservice.techtask.entity.User;
-import com.userservice.techtask.service.EmailSendServ;
 import com.userservice.techtask.service.UserService;
-import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,28 +28,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
-  @Autowired
-  private final EmailSendServ emailSendServ;
 
   @GetMapping("/health")
   public ResponseEntity<String> healthCheck() {
     return new ResponseEntity<>("Healthy new", HttpStatus.OK);
   }
-
-  @GetMapping("/mail")
-  public ResponseEntity<String> mailCheck() {
-    String recipient = "matveychuk.m@gmail.com";
-    String subject = "Amazon SES SMTP Interface";
-    String content = "<p>Hi there, this is a test email.</p>";
-
-    try {
-      emailSendServ.sendEmail(recipient, subject, content);
-    } catch (UnsupportedEncodingException | MessagingException e) {
-      System.out.println(Arrays.toString(e.getStackTrace()));
-    }
-    return new ResponseEntity<>("Mail send to " + recipient, HttpStatus.OK);
-  }
-
 
   /**
    * Endpoint for creating a new user.
