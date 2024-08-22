@@ -27,5 +27,5 @@ jobs:
       - name: Run create-infrastructure workflow
         id: create_infrastructure
         run: |
-          gh workflow run create_back_infrastructure_terraform.yml --ref ${{ env.BRANCH_NAME }}
-          gh run watch --exit-status create_back_infrastructure_terraform.yml
+          RUN_ID=$(gh run list --json databaseId --workflow= workflow-bot.yml --limit 1 | jq -r '.[0].databaseId')
+          gh run watch $RUN_ID --exit-status
