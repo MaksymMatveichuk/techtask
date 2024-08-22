@@ -29,8 +29,13 @@ jobs:
         run: |
           gh workflow run Create_infrastructure_only_Terraform_back --ref ${{ env.BRANCH_NAME }}
           echo "Waiting for terraform_deploy.yml to complete..."
-          RUN_ID=$(gh run list --workflow=Create_infrastructure_only_Terraform_back --json databaseId --limit 1 | jq -r '.[0].databaseId')
-
-          gh run watch $RUN_ID --exit-status
+          RUN_ID=$(gh run list --workflow=Create_infrastructure_only_Terraform_back --json databaseId,status --limit 1 | jq -r '.[0] | select(.status == "in_progress" or .status == "queued").databaseId')
+          if [ -z "$RUN_ID" ]; then
+            echo "No in-progress run found. Skipping watch."
+          else
+            echo "Waiting for workflow run $RUN_ID to complete..."
+              gh run watch $RUN_ID --exit-status
+          fi    
+#          gh run watch $RUN_ID --exit-status
 #          RUN_ID=$(gh run list --json databaseId --workflow=Create_infrastructure_only_Terraform_back --limit 1 | jq -r '.[0].databaseId')
 #          gh run watch $RUN_ID --exit-status
