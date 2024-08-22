@@ -27,5 +27,8 @@ jobs:
       - name: Run create-infrastructure workflow
         id: create_infrastructure
         run: |
+          RUN_ID=$(gh workflow run --workflow=Create_infrastructure_only_Terraform_back --ref ${{ env.BRANCH_NAME }} --json | jq -r '.id')
+          echo "Waiting for terraform_deploy.yml to complete..."
+          gh run watch $RUN_ID --exit-status
           RUN_ID=$(gh run list --json databaseId --workflow=Create_infrastructure_only_Terraform_back --limit 1 | jq -r '.[0].databaseId')
           gh run watch $RUN_ID --exit-status
