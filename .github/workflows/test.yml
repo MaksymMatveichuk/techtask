@@ -3,7 +3,7 @@ name: test
 on:
   workflow_dispatch:
   schedule:
-    - cron: "28 15 * * *"
+    - cron: "32 12 * * *"
 
 jobs:
   build:
