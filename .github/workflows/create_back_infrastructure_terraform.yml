@@ -7,6 +7,12 @@ env:
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment to deploy (prod, dev, newdev)'
+        required: true
+        default: 'prod'
+        type: string
 
 permissions:
   id-token: write
