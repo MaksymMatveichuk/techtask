@@ -22,7 +22,7 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ github.event.inputs.environment }}
     env:
       working-directory: terraform/create_infrastructure_only
     defaults:
