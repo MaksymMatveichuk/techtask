@@ -7,6 +7,12 @@ env:
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select environment to deploy (production, dev, newdev)'
+        required: true
+        default: 'production'
+        type: string
 
 permissions:
   id-token: write
@@ -30,7 +36,7 @@ jobs:
       with:
         aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Checkout
       uses: actions/checkout@v4
