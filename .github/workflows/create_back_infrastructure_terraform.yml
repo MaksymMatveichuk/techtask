@@ -3,15 +3,14 @@ name: 'Create_infrastructure_only_Terraform_back'
 env:
   AWS_ACCESS_KEY_ID: "${{ secrets.AWS_ACCESS_KEY_ID }}"
   AWS_SECRET_ACCESS_KEY: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-  AWS_REGION: "${{ secrets.AWS_REGION }}"
 
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Select environment to deploy (prod, dev, newdev)'
+        description: 'Select environment to deploy (production, dev, newdev)'
         required: true
-        default: 'prod'
+        default: 'production'
         type: string
 
 permissions:
@@ -22,7 +21,7 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ github.event.inputs.environment }}
     env:
       working-directory: terraform/create_infrastructure_only
     defaults:
@@ -36,7 +35,7 @@ jobs:
       with:
         aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     - name: Checkout
       uses: actions/checkout@v4
